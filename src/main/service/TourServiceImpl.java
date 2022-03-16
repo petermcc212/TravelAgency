@@ -3,14 +3,12 @@ package main.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.dao.UserDAO;
-import main.dao.UserDAOImpl;
-import main.model.TourDetails;
 import main.model.User;
+import main.repository.TourRepository;
+import main.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.dao.TourDAO;
 import main.model.Tour;
 
 import javax.transaction.Transactional;
@@ -21,19 +19,19 @@ import javax.transaction.Transactional;
 public class TourServiceImpl implements TourService{
 
     @Autowired
-    private TourDAO tourDAO;
+    private TourRepository tourRepository;
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @Override
     public List<Tour> getAll() {
-        return tourDAO.getAll();
+        return tourRepository.findAll();
     }
 
     @Override
     public Tour getbyId(int id) {
-        return tourDAO.getbyId(id);
+        return tourRepository.findById(id).get();
 //        return tourDAO.getbyId(id);
 //        Tour tour = tourDAO.getbyId(id);
 //        tour.getComments().size();
@@ -44,12 +42,12 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public void saveOrUpdate(Tour tour) {
-        tourDAO.saveOrUpate(tour);
+        tourRepository.save(tour);
     }
 
     @Override
     public void delete(int id) {
-        tourDAO.delete(id);
+        tourRepository.deleteById(id);
     }
 
 //    @Override
@@ -62,7 +60,7 @@ public class TourServiceImpl implements TourService{
 
     @Override
     public Tour getByIdWithComments(int id) {
-        return tourDAO.getByIdWithComments(id);
+        return tourRepository.getByIdWithComments(id);
     }
 
     @Override
@@ -71,7 +69,7 @@ public class TourServiceImpl implements TourService{
         if(tour.getUsers() == null) {
             tour.setUsers(new ArrayList<>());
         }
-        User user = userDAO.getById(userId);
+        User user = userRepository.getById(userId);
         if(user != null) {
             tour.getUsers().add(user);
             saveOrUpdate(tour);

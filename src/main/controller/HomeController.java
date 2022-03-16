@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import main.dao.TourDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
