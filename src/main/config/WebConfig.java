@@ -12,6 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -29,13 +30,13 @@ public class WebConfig implements WebMvcConfigurer {
 		ServletContextTemplateResolver resolver = new ServletContextTemplateResolver(context.getServletContext());
 		resolver.setPrefix("/WEB-INF/view/");
 		resolver.setSuffix(".html");
-		resolver.setCacheable(false);
 		return resolver;
 	}
 	
 	@Bean
 	public SpringTemplateEngine templateEngine() {
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+		templateEngine.addDialect(new SpringSecurityDialect());
 		templateEngine.setTemplateResolver(templateResolver());
 		return templateEngine;
 	}

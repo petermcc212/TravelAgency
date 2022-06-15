@@ -1,28 +1,27 @@
 package main.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.validation.Valid;
-
+import main.externalapi.model.openweathermap.OpenWeatherMap;
+import main.service.ExternalAPIsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import main.model.Tour;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController {
 
-//	private List<Tour> tours = new ArrayList<>();
+	@Autowired
+	private ExternalAPIsService externalAPIsService;
 
 	@RequestMapping("/")
-	public String getHome() {
+	public String getHome(HttpServletRequest request, Model model) {
+		OpenWeatherMap openWeatherMap = externalAPIsService.getData(request);
+		model.addAttribute("openWeatherMap", openWeatherMap);
 		return "home";
-	}
-	
 
+	}
 	
 }

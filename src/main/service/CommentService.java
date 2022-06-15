@@ -4,8 +4,6 @@ import main.model.Comment;
 
 public interface CommentService {
 
-    public void save(Comment comment);
-
-
-
+	public void save(Comment comment);
+	
 }

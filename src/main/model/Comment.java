@@ -13,39 +13,39 @@ import javax.persistence.Table;
 @Table(name = "comment")
 public class Comment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(length = 500)
+	private String content;
+	
+	@ManyToOne
+	@JoinColumn(name = "tour_id")
+	private Tour tour;
 
-    @Column(length = 500)
-    private String content;
+	public int getId() {
+		return id;
+	}
 
-    @ManyToOne
-    @JoinColumn(name = "tour_id")
-    private Tour tour;
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public String getContent() {
+		return content;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    public String getContent() {
-        return content;
-    }
+	public Tour getTour() {
+		return tour;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Tour getTour() {
-        return tour;
-    }
-
-    public void setTour(Tour tour) {
-        this.tour = tour;
-    }
-
+	public void setTour(Tour tour) {
+		this.tour = tour;
+	}
+	
 }

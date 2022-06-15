@@ -17,24 +17,24 @@ import main.service.TourService;
 @Controller
 public class CommentController {
 
-    @Autowired
-    private TourService tourService;
-
-    @Autowired
-    private CommentService commentService;
-
-    @GetMapping("/addComment")
-    public String showCommentForm(Model model) {
-        List<Tour> tours = tourService.getAll();
-        model.addAttribute("tours", tours);
-        model.addAttribute("comment", new Comment());
-        return "form-comment";
-    }
-
-    @PostMapping("/processFormComment")
-    public String addCommentData(@ModelAttribute Comment comment) {
-        commentService.save(comment);
-        return "home";
-    }
-
+	@Autowired
+	private TourService tourService;
+	
+	@Autowired
+	private CommentService commentService;
+	
+	@GetMapping("/addComment")
+	public String showCommentForm(Model model) {
+		List<Tour> tours = tourService.getAll();
+		model.addAttribute("tours", tours);
+		model.addAttribute("comment", new Comment());
+		return "form-comment";
+	}
+	
+	@PostMapping("/processFormComment")
+	public String addCommentData(@ModelAttribute Comment comment) {
+		commentService.save(comment);
+		return "home";
+	}
+	
 }

@@ -1,11 +1,14 @@
 package main.repository;
 
-import main.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import main.model.User;
+
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer>{
 
+    public boolean existsBylogin(String login);
 
+    public User findByLogin(String login);
 }

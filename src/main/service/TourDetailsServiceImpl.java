@@ -1,33 +1,33 @@
 package main.service;
 
+import javax.transaction.Transactional;
 
-import main.model.TourDetails;
-import main.repository.TourDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+import main.model.TourDetails;
+import main.repository.TourDetailsRepository;
 
 @Service
 @Transactional
-public class TourDetailsServiceImpl implements  TourDetailsService{
+public class TourDetailsServiceImpl implements TourDetailsService {
 
-    @Autowired
-    private TourDetailsRepository tourDetailsRepository;
+	@Autowired
+	private TourDetailsRepository tourDetailsRepository;
+	
+	@Override
+	public TourDetails getById(int id) {
+		return tourDetailsRepository.getOne(id);
+	}
 
-    @Override
-    public TourDetails getById(int id) {
-        return tourDetailsRepository.getById(id);
-    }
+	@Override
+	public void saveOrUpdate(TourDetails tourDetails) {
+		tourDetailsRepository.save(tourDetails);
+	}
 
-    @Override
-    public void saveOrUpdate(TourDetails tourDetails) {
-        tourDetailsRepository.save(tourDetails);
-    }
+	@Override
+	public void delete(int id) {
+		tourDetailsRepository.deleteById(id);
+	}
 
-    @Override
-    public void delete(int id) {
-        tourDetailsRepository.deleteById(id);
-
-    }
 }
