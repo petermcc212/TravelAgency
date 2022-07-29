@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class ExternalApIsServiceImpl implements ExternalAPIsService{
 
-    private static final String OPENWEATHERMAP_API_KEY = "19022b49b6b1ddb5238d5af3a75e81c8";
+    private static final String OPENWEATHERMAP_API_KEY = "KEY-GOES-HERE";
 
     private static final String OPENWEATHERMAP_ADDRESS = "https://api.openweathermap.org/data/2.5/";
     private static final String IPAPI_ADDRESS = "https://ipapi.co/";
